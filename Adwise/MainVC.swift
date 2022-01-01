@@ -12,25 +12,22 @@ class MainVC: UIViewController {
     
     @IBOutlet var adviceLabel: DWAnimatedLabel!
     var adviceManager = AdviceManager()
-    var shownMessage  = "Next Text"
+    var shownMessage  = ""
 
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         adviceLabel.animationType = .fade
         
-        
+        adviceManager.getAdvice()
     }
         
         @IBAction func getAdviceButtonTapped(_ sender: UIButton) {
             
-            adviceManager.getAdvice()
-            adviceLabel.startAnimation(duration: 3, nextText: shownMessage) {
-                self.adviceLabel.text = self.adviceManager.mySlip?.advice
-            }
-                        
+            viewDidLoad()
             
-
+            shownMessage = adviceManager.resultt?.slip.advice ?? "Nothing to show today"
+            adviceLabel.startAnimation(duration: 3, nextText: "\(shownMessage)") {
+            }
     }
 }
 
