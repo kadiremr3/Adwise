@@ -9,32 +9,35 @@ import Foundation
 
 class AdviceManager{
     
-    var mySlip : Slip?
+    var mySlip : Advice?
+    var resultt : Advice?
     
-    func getAdvice(){
-
+    func getAdvice() -> Advice?{
+        
         let urlString = "https://api.adviceslip.com/advice"
         
         guard let url = URL(string: urlString) else {
-                return
+            return nil
         }
+        
         let task = URLSession.shared.dataTask(with: url) { data, _, error in
             
-        guard let data = data, error == nil else {
+            guard let data = data, error == nil else {
                 return
             }
             
-        do {
-            let result = try JSONDecoder().decode(Advice.self, from: data)
+            do {
                 
-            DispatchQueue.main.async {
-                self.mySlip = result.slip
+                self.resultt = try JSONDecoder().decode(Advice.self, from: data)
+
+            } catch {
+                print(error)
             }
-                
-        } catch {
-            print(error)
+            
         }
-    }
+        
         task.resume()
-}
+        
+        return resultt
+    }
 }
