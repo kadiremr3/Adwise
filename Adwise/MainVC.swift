@@ -22,9 +22,7 @@ class MainVC: UIViewController {
     }
         
         @IBAction func getAdviceButtonTapped(_ sender: UIButton) {
-            
-            viewDidLoad()
-            
+
             shownMessage = adviceManager.resultt?.slip.advice ?? "Nothing to show today"
             adviceLabel.startAnimation(duration: 3, nextText: "\(shownMessage)") {
             }
