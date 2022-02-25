@@ -10,7 +10,7 @@ import Foundation
 class AdviceManager{
     
     var mySlip : Advice?
-    var resultt : Advice?
+    var result : Advice?
     
     func getAdvice() -> Advice?{
         
@@ -28,7 +28,7 @@ class AdviceManager{
             
             do {
                 
-                self.resultt = try JSONDecoder().decode(Advice.self, from: data)
+                self.result = try JSONDecoder().decode(Advice.self, from: data)
 
             } catch {
                 print(error)
@@ -38,6 +38,6 @@ class AdviceManager{
         
         task.resume()
         
-        return resultt
+        return result
     }
 }
